@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pgFAMjyMclk=",
+  "dgSpecHash": "9ykK6aRyJ6s=",
   "success": true,
-  "projectFilePath": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj",
+  "projectFilePath": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj",
   "expectedPackageFiles": [
     "/home/rifdev/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/home/rifdev/.nuget/packages/microsoft.aspnetcore.openapi/10.0.12/microsoft.aspnetcore.openapi.10.0.12.nupkg.sha512",
@@ -53,9 +53,9 @@
       "code": "NU1902",
       "level": "Warning",
       "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.18 has a known moderate severity vulnerability, https://github.com/advisories/GHSA-2fmv-rv2c-59x7",
-      "projectPath": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj",
+      "projectPath": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj",
       "warningLevel": 1,
-      "filePath": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj",
+      "filePath": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj",
       "libraryId": "System.Security.Cryptography.Pkcs",
       "targetGraphs": [
         "net10.0"
@@ -65,9 +65,9 @@
       "code": "NU1903",
       "level": "Warning",
       "message": "Package 'System.Security.Cryptography.Pkcs' 9.0.18 has a known high severity vulnerability, https://github.com/advisories/GHSA-846f-f764-76mx",
-      "projectPath": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj",
+      "projectPath": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj",
       "warningLevel": 1,
-      "filePath": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj",
+      "filePath": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj",
       "libraryId": "System.Security.Cryptography.Pkcs",
       "targetGraphs": [
         "net10.0"

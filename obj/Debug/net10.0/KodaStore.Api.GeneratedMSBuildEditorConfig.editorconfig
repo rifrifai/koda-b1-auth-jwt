@@ -19,53 +19,53 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = KodaStore.Api
 build_property.RootNamespace = KodaStore.Api
-build_property.ProjectDir = /home/rifdev/Downloads/koda/day24/koda-b1-efcore7/
+build_property.ProjectDir = /home/rifdev/Downloads/koda/day24/KodaStore.Api/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/rifdev/Downloads/koda/day24/koda-b1-efcore7
+build_property.MSBuildProjectDirectory = /home/rifdev/Downloads/koda/day24/KodaStore.Api
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Catalog/Create.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Catalog/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0YWxvZy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Catalog/Delete.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Catalog/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0YWxvZy9EZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Catalog/Details.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Catalog/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0YWxvZy9EZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Catalog/Edit.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Catalog/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0YWxvZy9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Catalog/Index.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Catalog/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0YWxvZy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Index.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Shared/_Layout.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/Shared/_StockBadge.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/Shared/_StockBadge.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19TdG9ja0JhZGdlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/_ViewImports.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/Views/_ViewStart.cshtml]
+[/home/rifdev/Downloads/koda/day24/KodaStore.Api/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

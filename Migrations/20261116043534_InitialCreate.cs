@@ -6,11 +6,28 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KodaStore.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class AddOrderAndOrderItem : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "dbo");
+
+            migrationBuilder.CreateTable(
+                name: "Category",
+                schema: "dbo",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.CategoryId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Orders",
                 schema: "dbo",
@@ -26,6 +43,34 @@ namespace KodaStore.Api.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.CheckConstraint("CK_Orders_Status", "[Status] In ('Pending', 'Confirmed')");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Product",
+                schema: "dbo",
+                columns: table => new
+                {
+                    ProductCode = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductCode);
+                    table.CheckConstraint("CK_Product_Price", "[Price] >= 0");
+                    table.CheckConstraint("CK_Product_Stock", "[Stock] >= 0");
+                    table.ForeignKey(
+                        name: "FK_Product_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalSchema: "dbo",
+                        principalTable: "Category",
+                        principalColumn: "CategoryId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,6 +108,13 @@ namespace KodaStore.Api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Category_Name",
+                schema: "dbo",
+                table: "Category",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItem_OrderId_ProductCode",
                 schema: "dbo",
                 table: "OrderItem",
@@ -80,6 +132,18 @@ namespace KodaStore.Api.Migrations
                 schema: "dbo",
                 table: "Orders",
                 column: "OrderDate");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_Category_Price_Name",
+                schema: "dbo",
+                table: "Product",
+                columns: new[] { "Category", "Price", "Name" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_CategoryId",
+                schema: "dbo",
+                table: "Product",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
@@ -91,6 +155,14 @@ namespace KodaStore.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Product",
+                schema: "dbo");
+
+            migrationBuilder.DropTable(
+                name: "Category",
                 schema: "dbo");
         }
     }

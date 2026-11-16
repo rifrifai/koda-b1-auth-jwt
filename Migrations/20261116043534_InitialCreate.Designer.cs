@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KodaStore.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261116021605_AddCategoryProductRelationship")]
-    partial class AddCategoryProductRelationship
+    [Migration("20261116043534_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

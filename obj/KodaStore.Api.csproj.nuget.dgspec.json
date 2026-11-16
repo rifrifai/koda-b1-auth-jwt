@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj": {}
+    "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj": {}
   },
   "projects": {
-    "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj": {
+    "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj",
+        "projectUniqueName": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj",
         "projectName": "KodaStore.Api",
-        "projectPath": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/KodaStore.Api.csproj",
+        "projectPath": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/KodaStore.Api.csproj",
         "packagesPath": "/home/rifdev/.nuget/packages/",
-        "outputPath": "/home/rifdev/Downloads/koda/day24/koda-b1-efcore7/obj/",
+        "outputPath": "/home/rifdev/Downloads/koda/day24/KodaStore.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/rifdev/.nuget/NuGet/NuGet.Config"
