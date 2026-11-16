@@ -1,6 +1,6 @@
 @baseUrl = http://localhost:5231
 
-### TEST 1 full
+### TEST 1 full and CORS
 GET {{baseUrl}}/api/v1/products/search
 Accept: application/json
 

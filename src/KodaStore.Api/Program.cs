@@ -1,4 +1,3 @@
-// using KodaStore.Infrastructure.Persistence;
 using KodaStore.Infrastructure.Persistence;
 using KodaStore.Application.Repositories;
 using KodaStore.Infrastructure.Seeding;
@@ -6,6 +5,7 @@ using KodaStore.Application.Services;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using KodaStore.Infrastructure.Repositories;
+using KodaStore.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,14 +13,10 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddOpenApi();
 builder.Services.AddProblemDetails();
 // builder.Services.AddSingleton<InMemoryProductCatalog>();
-
 // builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
 // builder.Services.AddSingleton<IProductService, ProductService>();
-
 // Repository SQL Server
-// builder.Services.AddScoped<
-//     IProductRepository,
-//     SqlProductRepository>();
+// builder.Services.AddScoped<IProductRepository, SqlProductRepository>();
 
 // Repository
 builder.Services.AddScoped<IProductRepository, EfProductRepository>();
@@ -35,6 +31,16 @@ builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var connectionString = builder.Configuration.GetConnectionString("ecommercedb")
         ?? throw new InvalidOperationException("ConnectionString : Belum dikonfigurasi");
+
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("ReactClient", policy =>
+    {
+        policy.WithOrigins(allowedOrigins).AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -76,8 +82,10 @@ else
     app.UseHsts();
 }
 
+app.UseMiddleware<RequestTimingMiddleware>();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseCors("ReactClient");
 app.UseRouting();
 
 app.UseRateLimiter();

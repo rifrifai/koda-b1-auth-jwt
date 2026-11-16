@@ -1,8 +1,5 @@
 @baseUrl = http://localhost:5231
 
-GET {{baseUrl}}/weatherforecast/
-Accept: application/json
-
 ### Get Product All
 GET {{baseUrl}}/api/v1/products
 Accept: application/json
