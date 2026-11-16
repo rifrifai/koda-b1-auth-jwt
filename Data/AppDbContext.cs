@@ -8,7 +8,7 @@ public sealed class AppDbContext : DbContext
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
-
+    public DbSet<Category> Categories => Set<Category>();
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
@@ -16,6 +16,16 @@ public sealed class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        // Category
+        modelBuilder.Entity<Category>(entity =>
+        {
+            entity.ToTable("Category", "dbo");
+            entity.HasKey(c => c.CategoryId);
+            entity.Property(c => c.CategoryId).ValueGeneratedOnAdd();
+            entity.Property(c => c.Name).HasMaxLength(30).IsRequired();
+            entity.HasIndex(c => c.Name).IsUnique();
+        });
 
         // Product 
         modelBuilder.Entity<Product>(entity =>
@@ -52,6 +62,16 @@ public sealed class AppDbContext : DbContext
             entity.Property(p => p.Description)
                 .HasMaxLength(500)
                 .IsRequired(false);
+
+            entity.Property(p => p.CategoryId).IsRequired(false);
+            entity.Property(p => p.RowVersion).IsRowVersion();
+
+            entity.HasOne(p => p.CategoryEntity)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasIndex(p => p.CategoryId);
 
             entity.HasIndex(p => new
             {

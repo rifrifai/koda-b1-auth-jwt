@@ -22,6 +22,27 @@ namespace KodaStore.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("KodaStore.Api.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.HasKey("CategoryId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Category", "dbo");
+                });
+
             modelBuilder.Entity("KodaStore.Api.Models.Order", b =>
                 {
                     b.Property<long>("OrderId")
@@ -107,6 +128,9 @@ namespace KodaStore.Api.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
@@ -120,10 +144,18 @@ namespace KodaStore.Api.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
                     b.HasKey("ProductCode");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("Category", "Price", "Name")
                         .HasDatabaseName("IX_Product_Category_Price_Name");
@@ -153,6 +185,21 @@ namespace KodaStore.Api.Migrations
                     b.Navigation("Order");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("KodaStore.Api.Models.Product", b =>
+                {
+                    b.HasOne("KodaStore.Api.Models.Category", "CategoryEntity")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("CategoryEntity");
+                });
+
+            modelBuilder.Entity("KodaStore.Api.Models.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("KodaStore.Api.Models.Order", b =>

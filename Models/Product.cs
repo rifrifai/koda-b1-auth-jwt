@@ -11,6 +11,13 @@ public sealed class Product
     public int Stock { get; private set; }
     public string Category { get; private set; }
     public string? Description { get; private set; }
+    public int? CategoryId { get; private set; }
+
+    // BARU: navigation property; namanya dibedakan dari Category string lama.
+    public Category? CategoryEntity { get; private set; }
+
+    // BARU: token konkurensi SQL Server untuk mendeteksi lost update.
+    public byte[] RowVersion { get; private set; } = [];
     public ICollection<OrderItem> OrderItems { get; private set; } = new List<OrderItem>();
 
     public Product(string productCode, string name, decimal price, int stock, string category, string? description = null)
@@ -52,5 +59,16 @@ public sealed class Product
         Stock = validated.Stock;
         Category = validated.Category;
         Description = validated?.Description;
+    }
+
+    public void AssignCategory(Category category)
+    {
+        ArgumentNullException.ThrowIfNull(category);
+        if (category.CategoryId <= 0)
+            throw new InvalidOperationException("Simpan Category terlebih dahulu agar dapat CategoryId");
+
+        CategoryId = category.CategoryId;
+        CategoryEntity = category;
+        Category = category.Name;
     }
 }

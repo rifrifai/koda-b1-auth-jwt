@@ -3,6 +3,7 @@ using KodaStore.Api.Data;
 using KodaStore.Api.Repositories;
 using KodaStore.Api.Seeding;
 using KodaStore.Api.Services;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddScoped<IProductRepository, EfProductRepository>();
 builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
 builder.Services.AddScoped<IProductQueryRepository, EfProductQueryRepository>();
+builder.Services.AddScoped<ICategoryRepository, EfCategoryRepository>();
 // Business/Application Service
 builder.Services.AddScoped<
     IProductService,
@@ -37,6 +39,7 @@ builder.Services.AddScoped<
     OrderService>();
 
 builder.Services.AddScoped<IProductQueryService, ProductQueryService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 
 // DBCONTEXT
@@ -49,14 +52,26 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         .UseSeeding((context, _) =>
         {
             ProductSeedData.Seed(context);
+            CategorySeedData.Seed(context);
             OrderSeedData.Seed(context);
         })
         .UseAsyncSeeding(async (context, _, ct) =>
         //    SeedAllAsync(context, ct)
             {
                 await ProductSeedData.SeedAsync(context, ct);
+                await CategorySeedData.SeedAsync(context, ct);
                 await OrderSeedData.SeedAsync(context, ct);
             });
+});
+
+builder.Services.AddRateLimiter(option =>
+{
+    option.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    option.AddConcurrencyLimiter("category-writes", limiter =>
+    {
+        limiter.PermitLimit = 8;
+        limiter.QueueLimit = 0;
+    });
 });
 
 var app = builder.Build();
@@ -75,6 +90,8 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+
+app.UseRateLimiter();
 
 app.MapControllers();
 app.MapControllerRoute(
