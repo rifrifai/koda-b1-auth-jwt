@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using KodaStore.Infrastructure.Repositories;
 using KodaStore.Api.Middlewares;
+using KodaStore.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddOpenApi();
 builder.Services.AddProblemDetails();
+builder.Services.AddInfrastucture(builder.Configuration);
 // builder.Services.AddSingleton<InMemoryProductCatalog>();
 // builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
 // builder.Services.AddSingleton<IProductService, ProductService>();
@@ -19,10 +21,10 @@ builder.Services.AddProblemDetails();
 // builder.Services.AddScoped<IProductRepository, SqlProductRepository>();
 
 // Repository
-builder.Services.AddScoped<IProductRepository, EfProductRepository>();
-builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
-builder.Services.AddScoped<IProductQueryRepository, EfProductQueryRepository>();
-builder.Services.AddScoped<ICategoryRepository, EfCategoryRepository>();
+// builder.Services.AddScoped<IProductRepository, EfProductRepository>();
+// builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
+// builder.Services.AddScoped<IProductQueryRepository, EfProductQueryRepository>();
+// builder.Services.AddScoped<ICategoryRepository, EfCategoryRepository>();
 // Service
 builder.Services.AddScoped<IProductService,ProductService>();
 builder.Services.AddScoped<IOrderService,OrderService>();

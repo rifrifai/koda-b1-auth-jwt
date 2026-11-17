@@ -1,0 +1,24 @@
+@baseUrl = http://localhost:5231/api/v1/auth
+
+### Register
+POST {{baseUrl}}/register
+Content-Type: application/json
+
+{
+    "email": "bagus@mail.com",
+    "password": "Qwert!23",
+    "displayName": "Bagus Susilo"
+}
+
+### Login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "bagus@mail.com",
+    "password": "Qwert!23"
+}
+
+### PRoduct
+GET {{baseUrl}}/api/v1/products
+Accept: application/json
