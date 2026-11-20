@@ -52,6 +52,10 @@ public static class DependencyInjection
 		}).AddRoles<IdentityRole<Guid>>().AddEntityFrameworkStores<AppDbContext>();
 
 		services.AddScoped<IAuthService, IdentityAuthService>();
+		services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
+		services.AddScoped<IJwtTokenService, JwtTokenService>();
+		services.AddScoped<IRefreshTokenService, RefreshTokenService>();
+		
 		return services;
 	}
 }
